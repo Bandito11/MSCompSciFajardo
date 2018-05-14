@@ -1,24 +1,41 @@
 {
-  "name": "webfire-template",
-  "version": "0.1.1",
-  "description": "A template for Firebase Tools.",
+  "name": "node-template",
+  "version": "1.0.4",
+  "description": "Template to have a running server in seconds",
+  "engines": {
+    "node": ">=8.0.0"
+  },
   "dependencies": {
-    "lokijs": "^1.5.1",
-    "firebase": "^4.8.2"
+    "body-parser": "latest",
+    "express": "latest",
+    "lokijs": "latest",
+    "request": "latest",
+    "serve-favicon": "latest",
+    "jsonwebtoken": "latest",
+    "serve-static": "latest"
   },
   "devDependencies": {
-    "@types/gulp": "^4.0.2",
-    "del": "^3.0.0",
-    "gulp": "^3.9.1",
-    "gulp-shell": "^0.6.5",
-    "gulp-typescript": "^3.1.6",
-    "nodemon": "^1.17.3",
-    "typescript": "^2.3.3"
+    "@types/serve-static": "latest",
+    "nodemon": "latest",
+    "morgan": "latest",
+    "@types/body-parser": "latest",
+    "@types/express": "latest",
+    "@types/gulp": "latest",
+    "@types/gulp-nodemon": "latest",
+    "@types/lokijs": "latest",
+    "@types/morgan": "latest",
+    "@types/request": "latest",
+    "@types/serve-favicon": "latest",
+    "del": "latest",
+    "gulp": "latest",
+    "gulp-nodemon": "latest",
+    "gulp-typescript": "latest",
+    "typescript": "latest",
+    "dotenv": "latest"
   },
   "scripts": {
-    "start": "firebase serve",
-    "dev": "gulp clean && gulp",
-    "deploy": "firebase deploy"
+    "start": "node dist/server.js",
+    "dev": "gulp"
   },
   "author": "Esteban Morales",
   "license": "MIT"

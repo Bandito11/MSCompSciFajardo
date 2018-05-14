@@ -1,69 +1,89 @@
 let gulp = require("gulp");
 let ts = require("gulp-typescript");
+let nodemon = require('gulp-nodemon');
 let del = require('del');
-let nodemon = require('nodemon');
-const shell = require('gulp-shell')
 
 gulp.task('clean', function () {
     return del.sync('dist/*');
 });
 
 gulp.task('build:www', function () {
-    let tsProject = ts.createProject('tsconfig.json');
+    let tsProject = ts.createProject('src/www/tsconfig.json');
     console.log('Compiling www!');
-    return tsProject.src()
+    return tsProject
+        .src()
         .pipe(tsProject())
-        .js.pipe(gulp.dest("dist/js"));
+        .js
+        .pipe(gulp.dest("dist/www/js"));
 });
 
 gulp.task('assets', function () {
-    gulp.src('src/assets/**/*')
-        .pipe(gulp.dest('dist/assets'));
+    gulp.src('src/www/assets/**/*')
+        .pipe(gulp.dest('dist/www/assets'));
 });
-
-gulp.task('robots', function () {
-    gulp.src('src/robots.txt')
-        .pipe(gulp.dest('dist'));
-});
-
-gulp.task('sitemap', function () {
-    gulp.src('src/sitemap.xml')
-        .pipe(gulp.dest('dist'));
-});
-
 
 gulp.task('styles', function () {
-    gulp.src('src/**/*.css')
-        .pipe(gulp.dest('dist'));
+    gulp.src('src/www/**/*.css')
+        .pipe(gulp.dest('dist/www'));
 });
 
 gulp.task('pages', function () {
-    gulp.src('src/**/*.html')
-        .pipe(gulp.dest('dist'));
+    gulp.src('src/www/**/*.html')
+        .pipe(gulp.dest('dist/www'));
 });
 
 gulp.task('watch', function () {
-    gulp.watch('src/assets/**/*', ['assets']);
-    gulp.watch('src/**/*.css', ['styles']);
-    gulp.watch('src/**/*.html', ['pages']);
-    gulp.watch('src/**/*.ts', ['build:www']);
+    gulp.watch('src/www/assets/**/*', ['assets']);
+    gulp.watch('src/www/**/*.css', ['styles']);
+    gulp.watch('src/www/**/*.html', ['pages']);
+    gulp.watch('src/www/**/*.ts', ['build:www']);
+    gulp.watch('src/server/**/*.ts', ['build:server']);
 });
 
-gulp.task('firebase', shell.task([
-    'firebase serve'
-]))
-
+gulp.task('heroku-watch', function () {
+    gulp.watch('src/www/assets/**/*', ['assets']);
+    gulp.watch('src/www/**/*.css', ['styles']);
+    gulp.watch('src/www/**/*.html', ['pages']);
+    gulp.watch('src/www/**/*.ts', ['build:www']);
+    gulp.watch('src/server/**/*.ts', ['build:server']);
+});
 /**
  * Import front end libs from node_modules
  */
 
 gulp.task('libs', function () {
-    //    gulp.src('node_modules/firebase/firebase.js')
-    //        .pipe(gulp.dest('dist/libs'));
-    gulp.src('src/libs/**/*.js')
-        .pipe(gulp.dest('dist/libs'));
+    gulp
+        .src('node_modules/lokijs/build/lokijs.min.js')
+        .pipe(gulp.dest('dist/www/libs'));
+
+    gulp
+        .src('src/www/**/*.js')
+        .pipe(gulp.dest('dist/www'));
 });
 
-// All custom gulp tasks should be added before watch task!!!
-gulp.task('default', ['clean', 'libs', 'assets', 'styles', 'pages', 'build:www', 'watch', 'firebase']);
+/**
+* Build for the server side.
+*/
+gulp.task('build:server', function () {
+    let tsProject = ts.createProject('src/server/tsconfig.json');
+    console.log('Compiling server!');
+    return tsProject
+        .src()
+        .pipe(tsProject())
+        .js
+        .pipe(gulp.dest("dist"));
+});
 
+/**
+*Start the node app
+*/
+gulp.task('start', ['clean', 'libs', 'assets', 'styles', 'pages', 'build:www', 'build:server','watch'], function () {
+    let stream = nodemon({
+        script: 'dist/server.js',
+        ext: 'ts',
+        watch: 'src/server'
+    });
+    return stream;
+});
+
+gulp.task('default', ['start']);
