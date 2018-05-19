@@ -3,8 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express = require("express");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
-const fs = require("fs");
-const authenticate_1 = require("./modules/authenticate");
+const authenticate_module_1 = require("./authenticate/authenticate.module");
 const app = express();
 require('dotenv').config();
 require('http').globalAgent.maxSockets = 5;
@@ -19,26 +18,11 @@ app.use(function (req, res, next) {
 });
 app.disable('x-powered-by');
 app.use(express.static(path.join(__dirname, 'www')));
-const dirPages = 'www/pages';
-const index = require('./routes/main.js');
-const authenticate = require('./routes/authenticate.js');
-app.use('/index', index);
-app.get('/', function (req, res) {
-    res.writeHead(200, {
-        'Content-Type': 'text/html',
-        'charset': 'utf-8'
-    });
-    fs.readFile(`${__dirname}/${dirPages}/index.html`, function (err, data) {
-        if (err) {
-            res.status(500);
-            console.error(err);
-            res.end('Couldn\'t retrieve the page, please try again!');
-        }
-        res.end(data);
-    });
-});
+const main = require('./main/main.route.js');
+const authenticate = require('./authenticate/authenticate.route.js');
+app.get('/', main);
 app.use('/authenticate', authenticate);
-app.use(authenticate_1.verifyAuthentication);
+app.use(authenticate_module_1.verifyAuthentication);
 app.use(function (err, req, res, next) {
     console.error(err);
     res.end('There was an error in the system, please try again!');

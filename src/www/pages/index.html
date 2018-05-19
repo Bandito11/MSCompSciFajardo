@@ -9,8 +9,14 @@
 </head>
 
 <body>
-    <h1>My basic node template</h1>
-
+    <div>
+        <input type="text" placeholder="nombre de usuario" id="user" />
+        <input type="password" id="password" />
+        <button id="submit" onclick="verify()">Ingresar</button>
+    </div> 
+<div>
+    <p id="existe"></p>
+</div>
     <!-- Libs after this line! -->
 <script type="text/javascript" src="libs/lokijs.min.js"></script>
     <!-- Custom JS scripts after this line! -->

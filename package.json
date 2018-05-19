@@ -1,37 +1,38 @@
 {
-  "name": "node-template",
-  "version": "1.0.4",
-  "description": "Template to have a running server in seconds",
+  "name": "COMP 6500 Finals",
+  "version": "0.0.0",
   "engines": {
     "node": ">=8.0.0"
   },
   "dependencies": {
     "body-parser": "latest",
     "express": "latest",
+    "jsonwebtoken": "^8.2.1",
     "lokijs": "latest",
+    "pg": "^7.4.3",
     "request": "latest",
     "serve-favicon": "latest",
-    "jsonwebtoken": "latest",
     "serve-static": "latest"
   },
   "devDependencies": {
-    "@types/serve-static": "latest",
-    "nodemon": "latest",
-    "morgan": "latest",
     "@types/body-parser": "latest",
     "@types/express": "latest",
     "@types/gulp": "latest",
     "@types/gulp-nodemon": "latest",
+    "@types/jsonwebtoken": "^7.2.7",
     "@types/lokijs": "latest",
     "@types/morgan": "latest",
     "@types/request": "latest",
     "@types/serve-favicon": "latest",
+    "@types/serve-static": "latest",
     "del": "latest",
+    "dotenv": "latest",
     "gulp": "latest",
     "gulp-nodemon": "latest",
     "gulp-typescript": "latest",
-    "typescript": "latest",
-    "dotenv": "latest"
+    "morgan": "latest",
+    "nodemon": "latest",
+    "typescript": "latest"
   },
   "scripts": {
     "start": "node dist/server.js",
