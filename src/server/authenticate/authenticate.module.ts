@@ -2,15 +2,13 @@ import { Request, Response, NextFunction } from 'express';
 import { sign, verify } from 'jsonwebtoken';
 const { Client } = require('pg');
 
-
-/**
- * 
- * @param req 
- * @param res 
- * @param next 
- */
 export function verifyAuthentication(req: Request, res: Response, next: NextFunction) {
-    const token = req.body.token || req.query.token || req.headers['x-access-token'];
+    let token;
+    try {
+        token = req.body.token || req.query.token || req.headers['x-access-token'] || req.headers.authorization.slice(7, req.headers.authorization.length);
+    } catch (error) {
+        console.log(error)
+    }
     if (token) {
         verify(token, process.env.MSCOMP, (error, decoded) => {
             if (error) {
@@ -22,7 +20,6 @@ export function verifyAuthentication(req: Request, res: Response, next: NextFunc
             }
         });
     } else {
-
         return res.status(403).send({
             success: false,
             message: 'No token provided.'
@@ -38,9 +35,19 @@ export async function checkAuthentication(opts: { username, password }) {
         connectionString: process.env.DATABASE_URL,
         ssl: true
     });
-    await client.connect();
-    const res = await client.query(text, values);
-    await client.end();
+    let res;
+    try {
+        await client.connect();
+        res = await client.query(text, values);
+        await client.end();
+    } catch (error) {
+        return {
+            success: false,
+            token: null,
+            message: error
+        };
+
+    }
     if (res.rows.length > 0) {
         const payload = {
             user: res.rows[0]
@@ -52,12 +59,66 @@ export async function checkAuthentication(opts: { username, password }) {
             success: true,
             token: token
         }
-
     } else {
         return {
             success: false,
             token: null,
             message: 'User doesn\'t exists'
+        };
+    }
+}
+
+export async function registerUser(opts: { username, password }) {
+    const text = 'SELECT username FROM users WHERE username = $1 and password = $2';
+    const values = [opts.username, opts.password];
+    const client = new Client({
+        connectionString: process.env.DATABASE_URL,
+        ssl: true
+    });
+    let res;
+    try {
+        await client.connect();
+        res = await client.query(text, values);
+        await client.end();
+    } catch (error) {
+        return {
+            success: false,
+            token: null,
+            message: error
+        };
+
+    }
+    if (res.rows.length > 0) {
+        //User exists!
+        return {
+            success: false,
+            token: null,
+            message: 'User already exists in DB!'
+        };
+    } else {
+        //User doesn't exist so register!
+        const text = 'INSERT INTO users VALUES($1,$2)';
+        const values = [opts.username, opts.password];
+        const client = new Client({
+            connectionString: process.env.DATABASE_URL,
+            ssl: true
+        });
+        try {
+            await client.connect();
+            res = await client.query(text, values);
+            await client.end();
+        } catch (error) {
+            return {
+                success: false,
+                token: null,
+                message: error
+            };
+
+        }
+        return {
+            success: true,
+            token: null,
+            message: 'User was successfully registered. Now you can try logging in with your new username and password.'
         };
     }
 }

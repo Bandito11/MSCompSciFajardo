@@ -15,4 +15,16 @@ async function authenticate(req, res) {
         res.send(response);
     }
 }
+router.post('/register', register);
+async function register(req, res) {
+    const username = req.headers.username;
+    const password = req.headers.password;
+    const response = await authenticate_module_1.registerUser({ username: username, password: password });
+    try {
+        res.send(response);
+    }
+    catch (error) {
+        res.send(error);
+    }
+}
 module.exports = router;
