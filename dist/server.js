@@ -2,14 +2,11 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const express = require("express");
 const bodyParser = require("body-parser");
-const morgan = require("morgan");
 const authenticate_module_1 = require("./authenticate/authenticate.module");
 const app = express();
-require('dotenv').config();
-require('http').globalAgent.maxSockets = 5;
+require('http').globalAgent.maxSockets = Infinity;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(morgan('dev'));
 const path = require('path');
 app.use(function (req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
