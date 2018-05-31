@@ -33,10 +33,10 @@ gulp.task('pages', function () {
 });
 
 gulp.task('watch', function () {
-    gulp.watch('src/www/assets/**/*', ['assets']);
-    gulp.watch('src/www/**/*.css', ['styles']);
-    gulp.watch('src/www/**/*.html', ['pages']);
-    gulp.watch('src/www/**/*.ts', ['build:www']);
+    // gulp.watch('src/www/assets/**/*', ['assets']);
+    // gulp.watch('src/www/**/*.css', ['styles']);
+    // gulp.watch('src/www/**/*.html', ['pages']);
+    // gulp.watch('src/www/**/*.ts', ['build:www']);
     gulp.watch('src/server/**/*.ts', ['build:server']);
 });
 
@@ -61,6 +61,12 @@ gulp.task('libs', function () {
         .pipe(gulp.dest('dist/www'));
 });
 
+gulp.task('copywww', function () {
+    gulp
+        .src('src/www/**/*')
+        .pipe(gulp.dest('dist/www'));
+});
+
 /**
 * Build for the server side.
 */
@@ -77,7 +83,8 @@ gulp.task('build:server', function () {
 /**
 *Start the node app
 */
-gulp.task('start', ['clean', 'libs', 'assets', 'styles', 'pages', 'build:www', 'build:server','watch'], function () {
+// gulp.task('start', ['clean', 'libs', 'assets', 'styles', 'pages', 'build:www', 'build:server','watch'], function () {
+    gulp.task('start', ['clean','copywww','build:server','watch'], function () {
     let stream = nodemon({
         script: 'dist/server.js',
         ext: 'ts',

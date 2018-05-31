@@ -113,7 +113,6 @@ export async function registerUser(opts: { username, password }) {
                 token: null,
                 message: error
             };
-
         }
         return {
             success: true,
