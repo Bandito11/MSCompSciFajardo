@@ -1,6 +1,92 @@
 webpackJsonp([0],{
 
-/***/ 121:
+/***/ 100:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_common_http__ = __webpack_require__(60);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+/**
+ * Generated class for the LoginPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var LoginPage = /** @class */ (function () {
+    function LoginPage(http, storage, navCtrl, navParams) {
+        this.http = http;
+        this.storage = storage;
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+    }
+    LoginPage.prototype.ionViewDidLoad = function () {
+        this.forms = 'login';
+    };
+    LoginPage.prototype.register = function (opts) {
+        if (opts.password == opts.password2) {
+            // test this first!!
+            // const url = '/authenticate/register';
+            // const headers = new HttpHeaders({'username': opts.username,'password':opts.password})
+            // this.http.post(url,opts,{headers:headers})
+            // .subscribe((response: any)=>{
+            //   if(response.success ==true){
+            //     alert('user is registered!')
+            //     this.storage.set('token', response.data);
+            //   }
+            // })
+            this.goBack();
+        }
+        else {
+            // Implement message box here
+        }
+    };
+    LoginPage.prototype.login = function (opts) {
+        this.storage.set('token', 'Esteban');
+        // test this first!!
+        // const url = '/authenticate';
+        // const headers = new HttpHeaders({'username': opts.username,'password':opts.password})
+        // this.http.post(url,opts,{headers:headers})
+        // .subscribe((response: any)=>{
+        //   if(response.success ==true){
+        //     alert('user is registered!')
+        //     this.storage.set('token', response.data);
+        //   }
+        // })
+        this.goBack();
+    };
+    LoginPage.prototype.goBack = function () {
+        this.navCtrl.pop();
+    };
+    LoginPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-login',template:/*ion-inline-start:"/Users/BanditoMac/Projects/6500finals/src/pages/login/login.html"*/'<!--\n  Generated template for the LoginPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar color="primary">\n    <ion-title>Login</ion-title>\n    <ion-buttons start>\n      <button ion-button (click)="goBack()"><ion-icon name="close"></ion-icon></button>\n    </ion-buttons>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n  <div padding>\n    <ion-segment [(ngModel)]="forms">\n      <ion-segment-button value="login">\n        Login\n      </ion-segment-button>\n      <ion-segment-button value="register">\n        Register\n      </ion-segment-button>\n    </ion-segment>\n  </div>\n\n  <div [ngSwitch]="forms">\n    <ion-grid fixed>\n      <form *ngSwitchCase="\'login\'" #loginForm="ngForm" (ngSubmit)="login({\n    username: username.value,\n    password: password.value\n  })">\n        <ion-list>\n          <ion-item>\n            <ion-label>UserName</ion-label>\n            <ion-input #username type="text"></ion-input>\n          </ion-item>\n          <ion-item>\n            <ion-label>Password</ion-label>\n            <ion-input #password type="password"></ion-input>\n          </ion-item>\n        </ion-list>\n        <button ion-button type="submit">Login</button>\n      </form>\n\n      <form *ngSwitchCase="\'register\'" #registerForm="ngForm" (ngSubmit)="register({\n        username: username.value,\n        password: password.value,\n        password2: password2.value\n      })">\n        <ion-list>\n          <ion-item>\n            <ion-label>UserName</ion-label>\n            <ion-input #username type="text"></ion-input>\n          </ion-item>\n          <ion-item>\n            <ion-label>Password</ion-label>\n            <ion-input #password type="password"></ion-input>\n          </ion-item>\n          <ion-item>\n            <ion-label>Password</ion-label>\n            <ion-input #password2 type="password" placeholder="Please write same password as above"></ion-input>\n          </ion-item>\n        </ion-list>\n        <button ion-button type="submit">Register</button>\n      </form>\n    </ion-grid>\n  </div>\n\n</ion-content>'/*ion-inline-end:"/Users/BanditoMac/Projects/6500finals/src/pages/login/login.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__angular_common_http__["a" /* HttpClient */], __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
+    ], LoginPage);
+    return LoginPage;
+}());
+
+//# sourceMappingURL=login.js.map
+
+/***/ }),
+
+/***/ 124:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8,7 +94,7 @@ webpackJsonp([0],{
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ionic_storage__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_profile_profile__ = __webpack_require__(227);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_profile_profile__ = __webpack_require__(228);
 var __assign = (this && this.__assign) || Object.assign || function(t) {
     for (var s, i = 1, n = arguments.length; i < n; i++) {
         s = arguments[i];
@@ -65,10 +151,9 @@ var UserProfilePage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["m" /* Component */])({
             selector: 'page-userprofile',template:/*ion-inline-start:"/Users/BanditoMac/Projects/6500finals/src/pages/userprofile/userprofile.html"*/'<!--\n  Generated template for the UserprofilePage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar color="primary">\n    <ion-title>{{username}}\'s Profile</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <form #profileForm="ngForm" (ngSubmit)="updateProfile({\n    firstName: firstName.value,\n    middleName: middleName.value,\n    lastName: lastName.value,\n    address: address.value,\n    state: state.value,\n    city: city.value,\n    country: country.value,\n    zip: zip.value,\n    phone: phone.value,\n    creditCard: { \n      number: number.value\n    }\n  })">\n    <ion-item>\n      <ion-label>Username</ion-label>\n      <ion-input placeholder="{{username}}" type="text"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label>First Name</ion-label>\n      <ion-input #firstName type="text"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label>Middle Name</ion-label>\n      <ion-input #middleName type="text"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label>Last Name</ion-label>\n      <ion-input #lastName type="text"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label>Address</ion-label>\n      <ion-input #address type="text"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label>State</ion-label>\n      <ion-input #state type="text"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label>City</ion-label>\n      <ion-input #city type="text"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label>Country</ion-label>\n      <ion-input #country type="text"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label>Zip Code</ion-label>\n      <ion-input #zip type="text"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label>Phone Number</ion-label>\n      <ion-input #phone type="text"></ion-input>\n    </ion-item>\n    <h2>Credit Card Info</h2>\n    <ion-item>\n      <ion-label>CC Number</ion-label>\n      <ion-input #number value="1234432112344321" placeholder="1234432112344321" type="text"></ion-input>\n    </ion-item>\n    <ion-item>\n      <h2>CC Type</h2>\n      <ion-select [(ngModel)]="ccType" [ngModelOptions]="{standalone:true}" placeholder="Visa">\n        <ion-option value="visa">Visa</ion-option>\n        <ion-option value="mastercard">MasterCard</ion-option>\n        <ion-option value="debit">Debit</ion-option>\n        <ion-option value="discover">Discover</ion-option>\n      </ion-select>\n    </ion-item>\n    <button ion-button type="submit">Update profile</button>\n  </form>\n</ion-content>'/*ion-inline-end:"/Users/BanditoMac/Projects/6500finals/src/pages/userprofile/userprofile.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__providers_profile_profile__["a" /* ProfileProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_profile_profile__["a" /* ProfileProvider */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__ionic_storage__["b" /* Storage */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* NavController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* NavParams */]) === "function" && _d || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__providers_profile_profile__["a" /* ProfileProvider */], __WEBPACK_IMPORTED_MODULE_0__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* NavParams */]])
     ], UserProfilePage);
     return UserProfilePage;
-    var _a, _b, _c, _d;
 }());
 
 //# sourceMappingURL=userprofile.js.map
@@ -100,7 +185,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserProfilePageModule", function() { return UserProfilePageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__userprofile__ = __webpack_require__(121);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__userprofile__ = __webpack_require__(124);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -171,7 +256,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BuyPageModule", function() { return BuyPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__buy__ = __webpack_require__(97);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__buy__ = __webpack_require__(98);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -209,7 +294,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EmployeePageModule", function() { return EmployeePageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__employee__ = __webpack_require__(98);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__employee__ = __webpack_require__(99);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -247,7 +332,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoginPageModule", function() { return LoginPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__login__ = __webpack_require__(99);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__login__ = __webpack_require__(100);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -277,15 +362,15 @@ var LoginPageModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 227:
+/***/ 228:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProfileProvider; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ionic_storage__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_observable_throw__ = __webpack_require__(228);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_observable_throw__ = __webpack_require__(229);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_observable_throw___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_observable_throw__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__(122);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__(60);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators__ = __webpack_require__(230);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators__);
@@ -311,15 +396,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 */
 var ProfileProvider = /** @class */ (function () {
     function ProfileProvider(http, storage) {
+        var _this = this;
         this.http = http;
         this.storage = storage;
+        this.storage.get('token').then(function (token) {
+            if (token) {
+                _this.token = token;
+            }
+        });
     }
     ProfileProvider.prototype.putProfile = function (opts) {
-        var url = "http://localhost:5000/profile";
+        var url = "/profile";
         var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["c" /* HttpHeaders */]({
             'Content-Type': 'application/x-www-form-urlencoded',
-            'Authorization': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJuYW1lIjoidXN1YXJpbyJ9LCJpYXQiOjE1Mjc3MzgyODAsImV4cCI6MTUyNzczOTcyMH0.RWBOgrv649qe_6sgrPwXSkOahvWAUDMwCvhccGzHaN4",
-            'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJuYW1lIjoidXN1YXJpbyJ9LCJpYXQiOjE1Mjc3MzgyODAsImV4cCI6MTUyNzczOTcyMH0.RWBOgrv649qe_6sgrPwXSkOahvWAUDMwCvhccGzHaN4',
+            'Authorization': this.token
         });
         var httpOptions = {
             headers: headers
@@ -341,10 +431,9 @@ var ProfileProvider = /** @class */ (function () {
     ;
     ProfileProvider = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_3__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__ionic_storage__["b" /* Storage */]) === "function" && _b || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */], __WEBPACK_IMPORTED_MODULE_0__ionic_storage__["b" /* Storage */]])
     ], ProfileProvider);
     return ProfileProvider;
-    var _a, _b;
 }());
 
 //# sourceMappingURL=profile.js.map
@@ -358,11 +447,11 @@ var ProfileProvider = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__login_login__ = __webpack_require__(99);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__login_login__ = __webpack_require__(100);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__buy_buy__ = __webpack_require__(97);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__employee_employee__ = __webpack_require__(98);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__userprofile_userprofile__ = __webpack_require__(121);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__buy_buy__ = __webpack_require__(98);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__employee_employee__ = __webpack_require__(99);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__userprofile_userprofile__ = __webpack_require__(124);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_catalog_catalog__ = __webpack_require__(248);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -499,9 +588,9 @@ var HomePage = /** @class */ (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CatalogProvider; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_observable_throw__ = __webpack_require__(228);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_observable_throw__ = __webpack_require__(229);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_observable_throw___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_rxjs_observable_throw__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(122);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(60);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_operators__ = __webpack_require__(230);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_operators___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__);
@@ -529,7 +618,7 @@ var CatalogProvider = /** @class */ (function () {
         this.http = http;
     }
     CatalogProvider.prototype.getProducts = function () {
-        var url = "http://localhost:5000/catalog";
+        var url = "/catalog";
         return this.http.get(url)
             .pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["retry"])(3), Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["catchError"])(this.handleError));
     };
@@ -577,22 +666,22 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__pages_userprofile_userprofile_module__ = __webpack_require__(140);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__pages_buy_buy_module__ = __webpack_require__(185);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pages_login_login__ = __webpack_require__(99);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pages_login_login__ = __webpack_require__(100);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_platform_browser__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ionic_angular__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_common_http__ = __webpack_require__(122);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_common_http__ = __webpack_require__(60);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_component__ = __webpack_require__(399);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_home_home__ = __webpack_require__(247);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__angular_forms__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_login_login_module__ = __webpack_require__(187);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ionic_storage__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_buy_buy__ = __webpack_require__(97);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_buy_buy__ = __webpack_require__(98);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_employee_employee_module__ = __webpack_require__(186);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_employee_employee__ = __webpack_require__(98);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_userprofile_userprofile__ = __webpack_require__(121);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_employee_employee__ = __webpack_require__(99);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_userprofile_userprofile__ = __webpack_require__(124);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__providers_catalog_catalog__ = __webpack_require__(248);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__providers_profile_profile__ = __webpack_require__(227);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__providers_profile_profile__ = __webpack_require__(228);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -708,7 +797,7 @@ var MyApp = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 97:
+/***/ 98:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -782,7 +871,7 @@ var USER = {
 
 /***/ }),
 
-/***/ 98:
+/***/ 99:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1047,10 +1136,9 @@ var EmployeePage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-employee',template:/*ion-inline-start:"/Users/BanditoMac/Projects/6500finals/src/pages/employee/employee.html"*/'<!--\n  Generated template for the EmployeePage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar color="primary">\n    <ion-title>Employee</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <ion-grid>\n    <ion-row>\n      <ion-col>\n        <ion-searchbar placeholder="Search by username or order id" debounce="1500" (ionInput)="searchOrders($event)"></ion-searchbar>\n        <ion-list>\n          <ion-item *ngFor="let order of orders" (click)="getOrderInfo(order)">\n            {{order.id}}\n          </ion-item>\n        </ion-list>\n      </ion-col>\n      <ion-col>\n        <div>\n          Order: {{order.id}}\n        </div>\n        <div>\n          Date: {{order.date}}\n        </div>\n        <div>\n          User: {{order.username}}\n        </div>\n        <div>\n          Shipping Costs: {{order.shipping}}\n        </div>\n        <div>\n          Total: {{order.total}}\n        </div>\n        <div>\n          Status: {{order.status}}\n        </div>\n        <ion-list *ngFor="let product of orderProductsInfo">\n          <ion-item>\n            <ion-avatar item-start>\n              <img src="{{product.src}}">\n            </ion-avatar>\n            <p>{{product.id}}</p>\n            <p>{{product.title}}</p>\n            <p>{{product.description}}</p>\n            <p>${{product.price}}</p>\n          </ion-item>\n        </ion-list>\n      </ion-col>\n      <ion-col>\n        <div>\n          <p>Year with most sales is: {{mostSalesYear}}</p>\n          <p>Most sold product up to {{today}} is\n            <span>{{mostSoldProduct}}</span>\n          </p>\n          <p>Most sold product up to {{today}} is in Zip Code\n            <span>{{ordersByZip}}</span>\n          </p>\n          <p>Client with more buys up to {{today}} is\n            <span>{{topClient}}</span>\n          </p>\n        </div>\n      </ion-col>\n    </ion-row>\n    <ion-row>\n      <ion-col col-5>\n        <form #employeeForm="ngForm" (ngSubmit)="insertProduct({\n          id:id.value,\n          title:title.value,\n          image:image.value,\n          shipping:shipping.value,\n          description:description.value,\n          price:price.value\n        })">\n          <ion-item>\n            <ion-label>Id</ion-label>\n            <ion-input #id type="text"></ion-input>\n          </ion-item>\n          <ion-item>\n            <ion-label>Title</ion-label>\n            <ion-input #title type="text"></ion-input>\n          </ion-item>\n          <ion-item>\n            <ion-label>Image</ion-label>\n            <ion-input #image type="text"></ion-input>\n          </ion-item>\n          <ion-item>\n            <ion-label>Shipping</ion-label>\n            <ion-input #shipping type="text"></ion-input>\n          </ion-item>\n          <ion-item>\n            <ion-label>Description</ion-label>\n            <ion-input #description type="text"></ion-input>\n          </ion-item>\n          <ion-item>\n            <ion-label>Price</ion-label>\n            <ion-input #price type="text"></ion-input>\n          </ion-item>\n          <button ion-button type="submit">Create Product</button>\n        </form>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>'/*ion-inline-end:"/Users/BanditoMac/Projects/6500finals/src/pages/employee/employee.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" && _b || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
     ], EmployeePage);
     return EmployeePage;
-    var _a, _b;
 }());
 
 var ORDERS = [{
@@ -1140,69 +1228,6 @@ var PRODUCTS = [{
         price: 41.99
     }];
 //# sourceMappingURL=employee.js.map
-
-/***/ }),
-
-/***/ 99:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(51);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-/**
- * Generated class for the LoginPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-var LoginPage = /** @class */ (function () {
-    function LoginPage(storage, navCtrl, navParams) {
-        this.storage = storage;
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-    }
-    LoginPage.prototype.ionViewDidLoad = function () {
-        this.forms = 'login';
-    };
-    LoginPage.prototype.register = function (opts) {
-        if (opts.password == opts.password2) {
-            this.goBack();
-        }
-        else {
-            // Implement message box here
-        }
-    };
-    LoginPage.prototype.login = function (opts) {
-        this.storage.set('token', 'Esteban');
-        this.goBack();
-    };
-    LoginPage.prototype.goBack = function () {
-        this.navCtrl.pop();
-    };
-    LoginPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-login',template:/*ion-inline-start:"/Users/BanditoMac/Projects/6500finals/src/pages/login/login.html"*/'<!--\n  Generated template for the LoginPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar color="primary">\n    <ion-title>Login</ion-title>\n    <ion-buttons start>\n      <button ion-button (click)="goBack()"><ion-icon name="close"></ion-icon></button>\n    </ion-buttons>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n  <div padding>\n    <ion-segment [(ngModel)]="forms">\n      <ion-segment-button value="login">\n        Login\n      </ion-segment-button>\n      <ion-segment-button value="register">\n        Register\n      </ion-segment-button>\n    </ion-segment>\n  </div>\n\n  <div [ngSwitch]="forms">\n    <ion-grid fixed>\n      <form *ngSwitchCase="\'login\'" #loginForm="ngForm" (ngSubmit)="login({\n    username: username.value,\n    password: password.value\n  })">\n        <ion-list>\n          <ion-item>\n            <ion-label>UserName</ion-label>\n            <ion-input #username type="text"></ion-input>\n          </ion-item>\n          <ion-item>\n            <ion-label>Password</ion-label>\n            <ion-input #password type="password"></ion-input>\n          </ion-item>\n        </ion-list>\n        <button ion-button type="submit">Login</button>\n      </form>\n\n      <form *ngSwitchCase="\'register\'" #registerForm="ngForm" (ngSubmit)="register({\n        username: username.value,\n        password: password.value,\n        password2: password2.value\n      })">\n        <ion-list>\n          <ion-item>\n            <ion-label>UserName</ion-label>\n            <ion-input #username type="text"></ion-input>\n          </ion-item>\n          <ion-item>\n            <ion-label>Password</ion-label>\n            <ion-input #password type="password"></ion-input>\n          </ion-item>\n          <ion-item>\n            <ion-label>Password</ion-label>\n            <ion-input #password2 type="password" placeholder="Please write same password as above"></ion-input>\n          </ion-item>\n        </ion-list>\n        <button ion-button type="submit">Register</button>\n      </form>\n    </ion-grid>\n  </div>\n\n</ion-content>'/*ion-inline-end:"/Users/BanditoMac/Projects/6500finals/src/pages/login/login.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
-    ], LoginPage);
-    return LoginPage;
-}());
-
-//# sourceMappingURL=login.js.map
 
 /***/ })
 
