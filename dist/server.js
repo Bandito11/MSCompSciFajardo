@@ -2,11 +2,14 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const express = require("express");
 const bodyParser = require("body-parser");
+const morgan = require("morgan");
 const authenticate_module_1 = require("./authenticate/authenticate.module");
 const app = express();
-require('http').globalAgent.maxSockets = Infinity;
+require('dotenv').config();
+require('http').globalAgent.maxSockets = 5;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(morgan('dev'));
 const path = require('path');
 app.use(function (req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
@@ -22,9 +25,11 @@ const catalog = require('./catalog/catalog.route.js');
 const profile = require('./profile/profile.route.js');
 app.get('*', main);
 app.use('/catalog', catalog);
-app.use('/profile', profile);
-app.use('/authenticate', authenticate);
-app.use(authenticate_module_1.verifyAuthentication);
+const apiRoutes = express.Router();
+apiRoutes.use('/authenticate', authenticate);
+apiRoutes.use(authenticate_module_1.verifyAuthentication);
+apiRoutes.use('/profile', profile);
+app.use('/api', apiRoutes);
 app.use(function (err, req, res, next) {
     console.error(err);
     res.end('There was an error in the system, please try again!');

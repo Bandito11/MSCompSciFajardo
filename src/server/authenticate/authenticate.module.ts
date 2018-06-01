@@ -7,12 +7,13 @@ export function verifyAuthentication(req: Request, res: Response, next: NextFunc
     try {
         token = req.body.token || req.query.token || req.headers['x-access-token'] || req.headers.authorization.slice(7, req.headers.authorization.length);
     } catch (error) {
-        console.log(error)
+        console.log(error);
+        throw error;
     }
     if (token) {
         verify(token, process.env.MSCOMP, (error, decoded) => {
             if (error) {
-                return res.json({ success: false, message: 'Failed authentication!' });
+                return res.json({ success: false, data: 'Failed authentication!' });
             } else {
                 res.locals.decoded = decoded;
                 req.params.decoded = decoded;
@@ -22,7 +23,7 @@ export function verifyAuthentication(req: Request, res: Response, next: NextFunc
     } else {
         return res.status(403).send({
             success: false,
-            message: 'No token provided.'
+            data: 'No token provided.'
         });
 
     }
@@ -44,7 +45,7 @@ export async function checkAuthentication(opts: { username, password }) {
         return {
             success: false,
             token: null,
-            message: error
+            data: error
         };
 
     }
@@ -63,7 +64,7 @@ export async function checkAuthentication(opts: { username, password }) {
         return {
             success: false,
             token: null,
-            message: 'User doesn\'t exists'
+            data: 'User doesn\'t exists'
         };
     }
 }
@@ -84,7 +85,7 @@ export async function registerUser(opts: { username, password }) {
         return {
             success: false,
             token: null,
-            message: error
+            data: error
         };
 
     }
@@ -93,7 +94,7 @@ export async function registerUser(opts: { username, password }) {
         return {
             success: false,
             token: null,
-            message: 'User already exists in DB!'
+            data: 'User already exists in DB!'
         };
     } else {
         //User doesn't exist so register!
@@ -111,13 +112,13 @@ export async function registerUser(opts: { username, password }) {
             return {
                 success: false,
                 token: null,
-                message: error
+                data: error
             };
         }
         return {
             success: true,
             token: null,
-            message: 'User was successfully registered. Now you can try logging in with your new username and password.'
+            data: 'User was successfully registered. Now you can try logging in with your new username and password.'
         };
     }
 }

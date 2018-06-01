@@ -9,11 +9,12 @@ function verifyAuthentication(req, res, next) {
     }
     catch (error) {
         console.log(error);
+        throw error;
     }
     if (token) {
         jsonwebtoken_1.verify(token, process.env.MSCOMP, (error, decoded) => {
             if (error) {
-                return res.json({ success: false, message: 'Failed authentication!' });
+                return res.json({ success: false, data: 'Failed authentication!' });
             }
             else {
                 res.locals.decoded = decoded;
@@ -25,7 +26,7 @@ function verifyAuthentication(req, res, next) {
     else {
         return res.status(403).send({
             success: false,
-            message: 'No token provided.'
+            data: 'No token provided.'
         });
     }
 }
@@ -47,7 +48,7 @@ async function checkAuthentication(opts) {
         return {
             success: false,
             token: null,
-            message: error
+            data: error
         };
     }
     if (res.rows.length > 0) {
@@ -66,7 +67,7 @@ async function checkAuthentication(opts) {
         return {
             success: false,
             token: null,
-            message: 'User doesn\'t exists'
+            data: 'User doesn\'t exists'
         };
     }
 }
@@ -88,14 +89,14 @@ async function registerUser(opts) {
         return {
             success: false,
             token: null,
-            message: error
+            data: error
         };
     }
     if (res.rows.length > 0) {
         return {
             success: false,
             token: null,
-            message: 'User already exists in DB!'
+            data: 'User already exists in DB!'
         };
     }
     else {
@@ -114,13 +115,13 @@ async function registerUser(opts) {
             return {
                 success: false,
                 token: null,
-                message: error
+                data: error
             };
         }
         return {
             success: true,
             token: null,
-            message: 'User was successfully registered. Now you can try logging in with your new username and password.'
+            data: 'User was successfully registered. Now you can try logging in with your new username and password.'
         };
     }
 }

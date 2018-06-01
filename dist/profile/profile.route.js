@@ -5,22 +5,17 @@ const profile_module_1 = require("./profile.module");
 const router = express_1.Router();
 router.put('/', profile);
 async function profile(req, res) {
-    let body;
-    for (const prop in req.body) {
-        body = JSON.parse(prop);
-        break;
-    }
     const profile = {
-        username: body.username,
-        firstName: body.firstName,
-        middleName: body.middleName,
-        lastName: body.lastName,
-        address: body.address,
-        state: body.state,
-        city: body.city,
-        country: body.country,
-        zip: body.zip,
-        phone: body.phone,
+        username: req.body.username,
+        firstName: req.body.firstName,
+        middleName: req.body.middleName,
+        lastName: req.body.lastName,
+        address: req.body.address,
+        state: req.body.state,
+        city: req.body.city,
+        country: req.body.country,
+        zip: req.body.zip,
+        phone: req.body.phone,
         creditCard: {
             number: parseInt(req.body.ccNumber),
             type: req.body.ccType

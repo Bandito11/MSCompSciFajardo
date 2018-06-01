@@ -1,17 +1,17 @@
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
-// import * as morgan from 'morgan'; //Only in dev
+import * as morgan from 'morgan'; //Only in dev
 import { verifyAuthentication } from './authenticate/authenticate.module';
 
 
 const app = express();
-// require('dotenv').config(); //Only in dev
-// require('http').globalAgent.maxSockets = 5;  //Only in dev
-require('http').globalAgent.maxSockets = Infinity;
+require('dotenv').config(); //Only in dev
+require('http').globalAgent.maxSockets = 5;  //Only in dev
+// require('http').globalAgent.maxSockets = Infinity;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-// app.use(morgan('dev')); //Only in dev
+app.use(morgan('dev')); //Only in dev
 const path = require('path');
 
 // Only allow if you want to use it as an API.
@@ -19,7 +19,6 @@ app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, x-access-token, Authorization');
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DElETE');
-  // res.header('Access-Control-Expose-Headers', 'x-access-token, Authorization');
   next();
 });
 
@@ -37,11 +36,21 @@ const profile = require('./profile/profile.route.js');
 //Routes
 app.get('*', main);
 app.use('/catalog', catalog);
-app.use('/profile', profile);
-app.use('/authenticate', authenticate);
+// app.use('register',register);
 
-// Routes that needs authentication
-app.use(verifyAuthentication);
+// Api Routes
+const apiRoutes = express.Router(); 
+
+// Route used to Authenticate
+apiRoutes.use('/authenticate', authenticate);
+
+// Route to verify Authentication
+apiRoutes.use(verifyAuthentication);
+
+// Authenticated routes
+apiRoutes.use('/profile', profile);
+
+app.use('/api', apiRoutes);
 
 //Error Handling, always goes last.
 app.use(function (err, req, res, next) {

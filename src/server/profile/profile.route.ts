@@ -7,24 +7,19 @@ const router = Router();
 router.put('/', profile);
 
 async function profile(req: Request, res: Response) {
-    let body;
-    for (const prop in req.body) {
-        body = JSON.parse(prop);
-        break;
-    }
     const profile: IUserProfile = {
-        username: body.username,
-        firstName: body.firstName,
-        middleName: body.middleName,
-        lastName: body.lastName,
-        address: body.address,
-        state: body.state,
-        city: body.city,
-        country: body.country,
-        zip: body.zip,
-        phone: body.phone,
+        username: req.body.username,
+        firstName: req.body.firstName,
+        middleName: req.body.middleName,
+        lastName: req.body.lastName,
+        address: req.body.address,
+        state: req.body.state,
+        city: req.body.city,
+        country: req.body.country,
+        zip: req.body.zip,
+        phone: req.body.phone,
         creditCard: {
-            number: parseInt(<string>req.body.ccNumber),
+            number: parseInt(req.body.ccNumber),
             type: <string>req.body.ccType
         }
     };
